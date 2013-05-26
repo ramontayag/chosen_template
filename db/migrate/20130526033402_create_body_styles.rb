@@ -1,8 +1,7 @@
-class CreateStyles < ActiveRecord::Migration
+class CreateBodyStyles < ActiveRecord::Migration
   def up
-    create_table :styles do |t|
+    create_table :body_styles do |t|
       t.string :name
-      t.references :page
       t.datetime :template_published_at
       t.datetime :template_previewed_at
       t.timestamps
@@ -10,6 +9,6 @@ class CreateStyles < ActiveRecord::Migration
   end
 
   def down
-    drop_table :styles
+    drop_table :body_styles
   end
 end

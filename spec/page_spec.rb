@@ -43,4 +43,26 @@ describe Page do
     end
   end
 
+  context 'when the template does not have a reference to the page' do
+    # NOTE: One of the reasons this is useful: if you have a multitenant app,
+    # split up by Site each having their own database or namespace. If there is
+    # a SiteLayout model, but that model does not have a site_id (why should it
+    # - Site lives on the public namespace).
+    describe '#previewed_body_style' do
+      it 'should go directly through BodyStyle class' do
+        body_style = build_stubbed(:body_style)
+        BodyStyle.stub_chain(:by_template_previewed_at, :first) { body_style }
+        page.previewed_body_style.should == body_style
+      end
+    end
+
+    describe '#published_body_style' do
+      it 'should go directly through BodyStyle class' do
+        body_style = build_stubbed(:body_style)
+        BodyStyle.stub_chain(:by_template_published_at, :first) { body_style }
+        page.published_body_style.should == body_style
+      end
+    end
+  end
+
 end

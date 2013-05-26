@@ -6,6 +6,7 @@ require 'chosen_template/chooser'
 require 'chosen_template/chosen'
 
 module ChosenTemplate
+  CHOOSABLE_REQUIRED_COLUMNS = [:template_published_at, :template_previewed_at]
 
   extend ActiveSupport::Concern
 
@@ -19,6 +20,12 @@ module ChosenTemplate
     def choosable_template(options={})
       cattr_accessor :chosen_by
       self.chosen_by = options[:by]
+
+      CHOOSABLE_REQUIRED_COLUMNS.each do |column_name|
+        unless self.column_names.include?(column_name.to_s)
+          raise ArgumentError, "`#{self.table_name}` requires the `#{column_name}` column"
+        end
+      end
       include Chosen
     end
   end

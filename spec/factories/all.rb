@@ -6,6 +6,9 @@ FactoryGirl.define do
   factory :page_template do
   end
 
+  factory :body_style do
+  end
+
   factory :style do
   end
 

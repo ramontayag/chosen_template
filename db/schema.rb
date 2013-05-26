@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526024132) do
+ActiveRecord::Schema.define(:version => 20130526033402) do
+
+  create_table "body_styles", :force => true do |t|
+    t.string   "name"
+    t.datetime "template_published_at"
+    t.datetime "template_previewed_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "page_templates", :force => true do |t|
     t.string   "name"
@@ -31,8 +39,10 @@ ActiveRecord::Schema.define(:version => 20130526024132) do
   create_table "styles", :force => true do |t|
     t.string   "name"
     t.integer  "page_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "template_published_at"
+    t.datetime "template_previewed_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
 end

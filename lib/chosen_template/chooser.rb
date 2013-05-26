@@ -10,7 +10,14 @@ module ChosenTemplate
           method_name = :"#{action_type}_#{template_choice.to_s.singularize}"
           define_method(method_name) do
             order_scope_name = :"by_template_#{action_type}_at"
-            self.send(template_choice).send(order_scope_name).first
+            template_class = template_choice.to_s.classify.constantize
+            foreign_key = "#{self.class.name.underscore}_id"
+            template_scope = if template_class.column_names.include?(foreign_key)
+                               self.send(template_choice)
+                             else
+                               template_class.scoped
+                             end
+            template_scope.send(order_scope_name).first
           end
         end
       end
