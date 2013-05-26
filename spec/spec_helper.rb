@@ -1,10 +1,10 @@
-require 'rspec'
-require 'bundler/setup'
-require 'active_record'
-require 'chosen_template'
-
 ROOT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 SPEC_DIR = File.expand_path(File.dirname(__FILE__))
+
+require 'rspec'
+require File.join(SPEC_DIR, 'dummy', 'config', 'environment')
+require 'bundler/setup'
+require 'chosen_template'
 
 Bundler.require(:test)
 

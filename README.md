@@ -69,7 +69,8 @@ Other useful scopes that can be called on the collection of templates:
 In the root folder:
 
     bundle install
-    rake db:migrate DB=test
+    cd spec/dummy
+    rake db:migrate db:test:prepare
     rspec spec
 
 ## Contributing
