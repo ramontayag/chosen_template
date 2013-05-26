@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Models
+
 The item that can be preview and published:
 
     class PageTemplate < ActiveRecord::Base
@@ -63,6 +65,28 @@ Other useful scopes that can be called on the collection of templates:
 - `previewed_templates` returns templates that were ever previewed
 - `by_template_published_at` returns templates ordered by the date they were published, from most newest to oldest
 - `by_template_previewed_at` returns templates ordered by the date they were previewed, from most newest to oldest
+
+### Controllers
+
+If you want to have specific actions on your controllers to preview and publish, do the following:
+
+    class PageTemplateController < ApplicationController
+      choosable_templates
+    end
+
+That gives you the following actions:
+
+- PUT #preview_template
+- PUT #publish_template
+
+Remember, to get this to work you still have to add the route:
+
+    resources :page_templates do
+      member do
+        put :preview_template
+        put :publish_template
+      end
+    end
 
 ## Running Specs
 

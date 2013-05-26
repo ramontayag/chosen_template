@@ -1,12 +1,13 @@
 ROOT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 SPEC_DIR = File.expand_path(File.dirname(__FILE__))
 
-require 'rspec'
 require File.join(SPEC_DIR, 'dummy', 'config', 'environment')
+require 'rspec'
+require 'rspec/rails'
 require 'bundler/setup'
 require 'chosen_template'
 
-Bundler.require(:test)
+Bundler.require(:test, :development)
 
 Dir[File.join(SPEC_DIR, 'support', "**/*.rb")].each do |f|
   require f
@@ -28,6 +29,7 @@ RSpec.configure do |config|
 
   config.after do
     DatabaseCleaner.clean
+    Timecop.return
   end
 
 end

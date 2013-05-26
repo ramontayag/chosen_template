@@ -4,7 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'database_cleaner'
-  gem 'timecop'
   gem 'pry'
 end
