@@ -12,7 +12,7 @@ describe PageTemplate do
   describe '.by_template_published_at' do
     it 'should order the published models by template_published_at' do
       described_class.by_template_published_at.to_sql.should ==
-        %Q(SELECT "#{described_class.table_name}".* FROM "#{described_class.table_name}"  WHERE (#{described_class.table_name}.template_published_at IS NOT NULL) ORDER BY #{described_class.table_name}.template_published_at DESC)
+        %Q(SELECT "#{described_class.table_name}".* FROM "#{described_class.table_name}"  WHERE (#{described_class.table_name}.template_published_at IS NOT NULL)  ORDER BY #{described_class.table_name}.template_published_at DESC)
     end
   end
 
@@ -26,7 +26,7 @@ describe PageTemplate do
   describe '.by_template_previewed_at' do
     it 'should order the previewed models by template_previewed_at' do
       described_class.by_template_previewed_at.to_sql.should ==
-        %Q(SELECT "#{described_class.table_name}".* FROM "#{described_class.table_name}"  WHERE (#{described_class.table_name}.template_previewed_at IS NOT NULL) ORDER BY #{described_class.table_name}.template_previewed_at DESC)
+        %Q(SELECT "#{described_class.table_name}".* FROM "#{described_class.table_name}"  WHERE (#{described_class.table_name}.template_previewed_at IS NOT NULL)  ORDER BY #{described_class.table_name}.template_previewed_at DESC)
     end
   end
 
