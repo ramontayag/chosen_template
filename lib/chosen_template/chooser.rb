@@ -15,7 +15,7 @@ module ChosenTemplate
             template_scope = if template_class.column_names.include?(foreign_key)
                                self.send(template_choice)
                              else
-                               template_class.scoped
+                               template_class.all
                              end
             template_scope.send(order_scope_name).first
           end
